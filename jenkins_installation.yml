@@ -1,0 +1,27 @@
+---
+- name: Install Jenkins Server
+  hosts: 192.168.56.102
+  become: true
+  tasks:
+    - name: Install Java
+      package:
+        name: openjdk-17-jre
+        state: present
+    - name: Adding Jenkins repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        state: present
+    - name: Adding Jenkins repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+    - name: Install Jenkins
+      package:
+        name: jenkins
+        state: present
+    - name: Start the jenkins Server
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+...
