@@ -1,0 +1,31 @@
+---
+- name: Install Tomcat 9
+  hosts: localhost #or the IP or gorup
+  become: yes
+
+  tasks:
+    - name: Install Java
+      package:
+        update_cache: yes
+        name: default-jdk  # Install default JDK package (openjdk) for Ubuntu/Debian systems
+        state: present
+      when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'  # Add condition for other distributions if needed
+
+    - name: Download Apache Tomcat 9
+      get_url:
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.87/bin/apache-tomcat-9.0.87.tar.gz"
+        dest: /tmp/apache-tomcat-9.0.87.tar.gz
+
+    - name: Extract Apache Tomcat 9
+      ansible.builtin.unarchive:
+        src: /tmp/apache-tomcat-9.0.87.tar.gz
+        dest: /opt
+        remote_src: yes
+        creates: /opt/apache-tomcat-9.0.87
+
+    - name: Start Tomcat service
+      systemd:
+        name: tomcat
+        state: started
+        enabled: yes
+...
