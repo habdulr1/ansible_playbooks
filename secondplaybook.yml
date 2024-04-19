@@ -1,0 +1,14 @@
+---
+- hosts: app
+  become: yes
+  gather_facts: no
+  tasks:
+  - package: name=wget state=latest
+  - package: name=vim state=latest
+
+- hosts: web
+  become: yes
+  gather_facts: no
+  tasks:
+  - package: name=apache2 state=latest
+...

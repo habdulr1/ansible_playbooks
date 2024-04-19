@@ -1,0 +1,10 @@
+---
+#play is a combination of hosts & tasks
+- hosts: all
+# become root user
+  become: yes
+#List of tasks to be executed
+  tasks:
+  - name: Remove wget package
+    apt: name=wget state=absent
+...

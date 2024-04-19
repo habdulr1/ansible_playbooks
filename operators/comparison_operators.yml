@@ -1,0 +1,18 @@
+---
+- name: Performing comparison operations on 2 numbers
+  hosts: localhost
+  gather_facts: no
+  vars:
+    num1: 10
+    num2: 20
+  tasks:
+  - debug:
+      msg:
+        - "The value of num1 is {{ num1 }} and value of num2 is {{ num2 }}"
+        - "Value of num1 is equal to num2 is {{ num1 == num2 }}"
+        - "Value of num1 is not equal to num2 is {{ num1 != num2 }}"
+        - "Value of num1 greater than num2 is {{ num1 > num2 }}"
+        - "Value of num1 lesser than num2 is {{ num1 < num2 }}"
+        - "Value of num1 greater than or equal to num2 is {{ num1 >= num2 }}"
+        - "Value of num1 less than or equal to num2 is {{ num1 <= num2 }}" 
+...

@@ -1,0 +1,11 @@
+#!/home/vagrant/.local/bin/ansible-playbook
+- name: Copying a file
+  hosts: web
+  gather_facts: false
+  tasks:
+  - name: copy a file to web group
+    copy: src=/tmp/edureka.txt dest=~/
+
+  - name: create an empty file on webgroup
+    file: path=/tmp/src_file.txt state=touch
+...

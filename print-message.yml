@@ -1,0 +1,8 @@
+---
+- hosts: 192.168.56.103
+  tasks:
+  - debug:
+      msg:
+        - "Welcome to ansible"
+        - "Welcome to play-books training"
+...
